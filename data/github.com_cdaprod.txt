@@ -1,0 +1,1288 @@
+Cdaprod
+                  
+  
+    
+      Follow
+
+Overview
+
+Repositories
+    517
+
+Projects
+    0
+
+Packages
+      0
+
+Stars
+    616
+
+More
+
+Overview
+
+Repositories
+
+Projects
+
+Packages
+
+Stars
+
+Cdaprod
+
+Follow
+
+Learn something new everyday!
+
+David
+        
+        
+          Cdaprod
+
+Learn something new everyday!
+
+Follow
+
+Sponsor
+
+As a highly motivated autodidact, a single father of triplet boys, I’ve got an amazing story to tell.
+
+19
+          followers
+        ·
+
+137
+          following
+
+CDAProd
+
+Douglasville, GA (West ATL)
+
+09:37
+  (UTC -05:00)
+
+Sanity.Cdaprod.dev
+
+X
+
+
+
+
+
+
+
+
+
+
+        @cdasmktcda
+
+Facebook
+
+        davidacannan
+
+LinkedIn
+
+
+
+
+
+        in/cdasmkt
+
+https://sanity.cdaprod.dev
+
+Achievements
+
+Beta
+
+Send feedback
+
+Achievements
+
+Beta
+
+Send feedback
+
+Highlights
+
+Developer Program Member
+
+Block or report Cdaprod
+
+Prevent this user from interacting with your repositories and sending you notifications.
+          Learn more about blocking users.
+
+You must be logged in to block users.
+
+
+            Add an optional note:
+              
+
+Please don't include any personal information such as legal names or email addresses. Maximum 100 characters, markdown supported. This note will be visible to only you.
+
+Contact GitHub support about this user’s behavior.
+        Learn more about reporting abuse.
+
+Report abuse
+
+Overview
+
+Repositories
+    517
+
+Projects
+    0
+
+Packages
+      0
+
+Stars
+    616
+
+More
+
+Overview
+
+Repositories
+
+Projects
+
+Packages
+
+Stars
+
+Cdaprod
+
+/README
+
+.md
+
+David's Developer Journey
+
+Welcome to my GitHub! I'm David, a DevOps intern at MinIO, passionate about building personal AI solutions, exploring cutting-edge cloud storage technologies, and contributing to the open-source community. Here, you'll find projects that embody my journey from a self-taught enthusiast to a dedicated developer, crafting solutions with Python, the LangChain Framework, and Mistral LLM via LM Studios.
+
+🚀 Current Focus
+
+I am currently immersed in:
+
+Enhancing cloud storage solutions at MinIO.
+
+Developing personal AI applications using the OpenAI API.
+
+Experimenting with containerization, Infrastructure as Code (IaC), and CI/CD pipelines to streamline development processes.
+
+💡 Projects
+
+Explore my repositories to see my work on:
+
+Web Applications: Utilizing Python and JavaScript to create dynamic, user-friendly interfaces.
+
+Digital Downloads and Custom Bots: Automating tasks and providing value through intelligent bots.
+
+Data Lake Applications: Leveraging ML to analyze and extract insights from large datasets.
+
+🛠 Skills & Technologies
+
+I am proficient in:
+
+Languages: Python, JavaScript, Go, and Bash.
+
+DevOps: GitHub Actions, Docker, Kubernetes, Terraform.
+
+Cloud Technologies: AWS, GCP, Azure.
+
+Cyber Security & Bug Bounty Hunting: Applying my knowledge to secure applications and infrastructure.
+
+🌱 Learning & Growth
+
+I'm on a continuous learning path, focusing on:
+
+Advanced AI & ML Techniques: For building smarter applications.
+
+Cloud-Native Technologies: To improve scalability and performance of cloud services.
+
+Software Architecture: Designing resilient, scalable, and maintainable systems.
+
+📈 Passive Income Goals
+
+I aim to establish passive income streams through:
+
+Software Development: Creating valuable tools and applications.
+
+Content Creation: Sharing knowledge and experiences on my blog.
+
+🤝 Connect With Me
+
+Let's collaborate or chat about technology, programming, or anything interesting:
+
+Twitter (@cdasmktcda)
+
+LinkedIn (cdasmkt)
+
+GitHub (Cdaprod)
+
+Thank you for visiting my GitHub! Dive into my projects, and let's make something amazing together.
+
+Proudly made with 💻 and ☕ by David.
+
+Pinned
+
+Cdaprod
+Cdaprod          Public
+        
+      
+
+
+      
+        Open-Source Contributor
+      
+
+      
+          
+  
+  HTML
+
+
+          
+            
+    
+
+            1
+
+cda.resumes
+cda.resumes          Public
+        
+      
+
+
+      
+        
+      
+
+      
+          
+  
+  HTML
+
+This script establishes a comprehens...
+This script establishes a comprehensive ETL (Extract, Transform, Load) process model using Pydantic, providing a structured approach to data pipeline construction. It features detailed class definitions for managing connection details, source data extraction, transformations, and data loading. It also includes models for lifecycle management, job control, data quality validation, auditing, and performance monitoring. The root validator ensures the integrity of the ETL structure, making the model robust and reliable for orchestrating complex data workflows. This script is an excellent starting point for building a sophisticated ETL pipeline that can handle diverse data sources and formats.      
+
+          
+              
+                1
+                from pydantic import BaseModel, Field, root_validator
+              
+              
+                2
+                from typing import Any, List, Optional, Dict, Union
+              
+              
+                3
+                from datetime import datetime
+              
+              
+                4
+                
+              
+              
+                5
+                # Define connection settings that could apply to any data source/storage
+
+Extending BabyAGI for Python re-codi...
+Extending BabyAGI for Python re-coding and GitOps/DevOps analysis and IaC generation.       
+
+          
+              
+                1
+                # To achieve the described functionality, you would need to extend BabyAGI with a new method to handle the parsing and writing of scripts. However, before diving into that, let’s ensure that you have a structured way of organizing your existing scripts and the new ones you will create.
+              
+              
+                2
+                import os
+              
+              
+                3
+                import ast
+              
+              
+                4
+                import importlib.util
+              
+              
+                5
+                from typing import List, Dict, Tuple
+
+Langchain tool for preprocessing tex...
+Langchain tool for preprocessing text data. Version one million nine-hundred and fifty two 😂 jk version 1      
+
+          
+              
+                1
+                import spacy
+              
+              
+                2
+                import pandas as pd
+              
+              
+                3
+                from sklearn.preprocessing import MinMaxScaler
+              
+              
+                4
+                from langchain.tools import BaseTool
+              
+              
+                5
+                from typing import Optional, Union, List
+
+Dynamic Langchain Custom Tool Storag...
+Dynamic Langchain Custom Tool Storage and Retrieval with Weaviate & MinIO.      
+
+          
+              
+                1
+                {
+              
+              
+                2
+                 "cells": [
+              
+              
+                3
+                  {
+              
+              
+                4
+                   "cell_type": "markdown",
+              
+              
+                5
+                   "id": "b4895726",
+
+2,200
+      contributions
+        in the last year
+
+Day of Week March Mar April Apr May May June Jun July Jul August Aug September Sep October Oct November Nov December Dec January Jan February Feb Sunday Sun Monday Mon Tuesday Tue Wednesday Wed Thursday Thu Friday Fri Saturday Sat
+
+Learn how we count contributions
+
+Less
+
+No contributions.
+
+Low contributions.
+
+Medium-low contributions.
+
+Medium-high contributions.
+
+High contributions.
+
+More
+
+@minio
+
+@CDA-LLC
+
+Activity
+              overview
+
+
+      Contributed to
+        
+
+Cdaprod/minio-weaviate-langchain,
+
+minio/blog-assets,
+
+Cdaprod/cda.resumes
+
+and 237 other
+          repositories
+
+Contribution activity
+
+February 2024
+
+Created 240
+            commits in
+            15
+            repositories
+
+Cdaprod/minio-weaviate-langchain
+      
+        91 commits
+
+Cdaprod/minio-weaviate-backups
+      
+        40 commits
+
+Cdaprod/minio-weaviate-python-dockersdk
+      
+        23 commits
+
+Cdaprod/minio-weaviate-python
+      
+        22 commits
+
+minio/blog-assets
+      
+        21 commits
+
+Cdaprod/minio-weaviate-integration
+      
+        17 commits
+
+Cdaprod/github-contribs-cron-job
+      
+        9 commits
+
+Cdaprod/Cdaprod
+      
+        5 commits
+
+Cdaprod/minio-langchain-memory
+      
+        3 commits
+
+Cdaprod/shortcut-workflow-dispatch
+      
+        3 commits
+
+Cdaprod/minio-weaviate-langchain-tools
+      
+        2 commits
+
+Cdaprod/minio-unstructured-cleaning
+      
+        1 commit
+
+Cdaprod/minio-langchain-full
+      
+        1 commit
+
+Cdaprod/minio-enrich-metadata
+      
+        1 commit
+
+Cdaprod/atlanta-cloud-conference-2024
+      
+        1 commit
+
+Created
+              17
+            
+            repositories
+
+Cdaprod/minio-unstructured-cleaning
+                  
+                
+                
+                    
+  
+  Jupyter Notebook
+
+
+                
+                
+                  
+                    This contribution was made on Feb 23
+                  
+                  
+                    Feb 23
+
+Cdaprod/minio-weaviate-langchain-tools
+                  
+                
+                
+                    
+  
+  Jupyter Notebook
+
+
+                
+                
+                  
+                    This contribution was made on Feb 23
+                  
+                  
+                    Feb 23
+
+Cdaprod/chatlab
+                  
+                
+                
+                    
+  
+  Jupyter Notebook
+
+
+                
+                
+                  
+                    This contribution was made on Feb 23
+                  
+                  
+                    Feb 23
+
+Cdaprod/functionary
+                  
+                
+                
+                    
+  
+  Python
+
+
+                
+                
+                  
+                    This contribution was made on Feb 23
+                  
+                  
+                    Feb 23
+
+Cdaprod/SSH-Snake
+                  
+                
+                
+                    
+  
+  Shell
+
+
+                
+                
+                  
+                    This contribution was made on Feb 22
+                  
+                  
+                    Feb 22
+
+Cdaprod/minio-weaviate-python-dockersdk
+                  
+                
+                
+                    
+  
+  Python
+
+
+                
+                
+                  
+                    This contribution was made on Feb 18
+                  
+                  
+                    Feb 18
+
+Cdaprod/minio-langchain-full
+                  
+                
+                
+                    
+  
+  Jupyter Notebook
+
+
+                
+                
+                  
+                    This contribution was made on Feb 14
+                  
+                  
+                    Feb 14
+
+Cdaprod/Complete-Langchain-Template
+                  
+                
+                
+                    
+  
+  Jupyter Notebook
+
+
+                
+                
+                  
+                    This contribution was made on Feb 13
+                  
+                  
+                    Feb 13
+
+Cdaprod/github-contribs-cron-job
+                  
+                
+                
+                    
+  
+  Python
+
+
+                
+                
+                  
+                    This contribution was made on Feb 12
+                  
+                  
+                    Feb 12
+
+Cdaprod/minio-weaviate-python
+                  
+                
+                
+                    
+  
+  Python
+
+
+                
+                
+                  
+                    This contribution was made on Feb 12
+                  
+                  
+                    Feb 12
+
+Cdaprod/minio-langchain-memory
+                  
+                
+                
+                    
+  
+  Python
+
+
+                
+                
+                  
+                    This contribution was made on Feb 12
+                  
+                  
+                    Feb 12
+
+Cdaprod/minio-enrich-metadata
+                  
+                
+                
+                    
+  
+  Python
+
+
+                
+                
+                  
+                    This contribution was made on Feb 12
+                  
+                  
+                    Feb 12
+
+Cdaprod/atlanta-cloud-conference-2024
+                  
+                
+                
+                
+                
+                  
+                    This contribution was made on Feb 12
+                  
+                  
+                    Feb 12
+
+Cdaprod/minio-weaviate-integration
+                  
+                
+                
+                    
+  
+  Python
+
+
+                
+                
+                  
+                    This contribution was made on Feb 11
+                  
+                  
+                    Feb 11
+
+Cdaprod/duckargs
+                  
+                
+                
+                    
+  
+  Python
+
+
+                
+                
+                  
+                    This contribution was made on Feb 8
+                  
+                  
+                    Feb 8
+
+Cdaprod/snscrape
+                  
+                
+                
+                    
+  
+  Python
+
+
+                
+                
+                  
+                    This contribution was made on Feb 6
+                  
+                  
+                    Feb 6
+
+Cdaprod/shortcut-workflow-dispatch
+                  
+                
+                
+                
+                
+                  
+                    This contribution was made on Feb 6
+                  
+                  
+                    Feb 6
+
+Created a pull request in Cdaprod/PenTestersFramework that received 1
+        comment
+
+Feb 1
+
+[Snyk] Security upgrade debian from latest to 12
+
+This PR was automatically created by Snyk using the credentials of a real user.Keeping your Docker base image up-to-date means you’ll benefit from …
+
++1
+
+−1
+
+lines changed
+
+Opened 41
+            other
+            pull requests in
+            14
+            repositories
+
+Cdaprod/Music-Controller-Web-App-Tutorial
+
+13
+            
+            open
+
+[Snyk] Security upgrade @babel/plugin-proposal-class-properties from 7.12.1 to 7.18.6
+              
+            
+            
+              
+                This contribution was made on Feb 3
+              
+              
+                Feb 3
+
+[Snyk] Security upgrade @babel/plugin-proposal-class-properties from 7.12.1 to 7.18.6
+              
+            
+            
+              
+                This contribution was made on Feb 3
+              
+              
+                Feb 3
+
+[Snyk] Security upgrade @babel/plugin-proposal-class-properties from 7.12.1 to 7.18.6
+              
+            
+            
+              
+                This contribution was made on Feb 3
+              
+              
+                Feb 3
+
+[Snyk] Security upgrade @babel/plugin-proposal-class-properties from 7.12.1 to 7.18.6
+              
+            
+            
+              
+                This contribution was made on Feb 3
+              
+              
+                Feb 3
+
+[Snyk] Security upgrade @babel/plugin-proposal-class-properties from 7.12.1 to 7.18.6
+              
+            
+            
+              
+                This contribution was made on Feb 3
+              
+              
+                Feb 3
+
+[Snyk] Security upgrade @babel/plugin-proposal-class-properties from 7.12.1 to 7.18.6
+              
+            
+            
+              
+                This contribution was made on Feb 2
+              
+              
+                Feb 2
+
+[Snyk] Security upgrade @babel/plugin-proposal-class-properties from 7.12.1 to 7.18.6
+              
+            
+            
+              
+                This contribution was made on Feb 2
+              
+              
+                Feb 2
+
+[Snyk] Security upgrade @babel/plugin-proposal-class-properties from 7.12.1 to 7.18.6
+              
+            
+            
+              
+                This contribution was made on Feb 2
+              
+              
+                Feb 2
+
+[Snyk] Security upgrade @babel/plugin-proposal-class-properties from 7.12.1 to 7.18.6
+              
+            
+            
+              
+                This contribution was made on Feb 2
+              
+              
+                Feb 2
+
+[Snyk] Security upgrade @babel/plugin-proposal-class-properties from 7.12.1 to 7.18.6
+              
+            
+            
+              
+                This contribution was made on Feb 2
+              
+              
+                Feb 2
+
+[Snyk] Security upgrade @babel/plugin-proposal-class-properties from 7.12.1 to 7.18.6
+              
+            
+            
+              
+                This contribution was made on Feb 2
+              
+              
+                Feb 2
+
+[Snyk] Security upgrade @babel/plugin-proposal-class-properties from 7.12.1 to 7.18.6
+              
+            
+            
+              
+                This contribution was made on Feb 2
+              
+              
+                Feb 2
+
+[Snyk] Security upgrade @babel/plugin-proposal-class-properties from 7.12.1 to 7.18.6
+              
+            
+            
+              
+                This contribution was made on Feb 2
+              
+              
+                Feb 2
+
+Cdaprod/functions-framework-python
+
+12
+            
+            open
+
+[Snyk] Security upgrade python from 3.7-slim to 3.13.0a3-slim
+              
+            
+            
+              
+                This contribution was made on Feb 23
+              
+              
+                Feb 23
+
+[Snyk] Security upgrade python from 3.7-slim to 3.13.0a3-slim
+              
+            
+            
+              
+                This contribution was made on Feb 23
+              
+              
+                Feb 23
+
+[Snyk] Security upgrade python from 3.7-slim to 3.13.0a3-slim
+              
+            
+            
+              
+                This contribution was made on Feb 23
+              
+              
+                Feb 23
+
+[Snyk] Security upgrade python from 3.7-slim to 3.13.0a3-slim
+              
+            
+            
+              
+                This contribution was made on Feb 22
+              
+              
+                Feb 22
+
+[Snyk] Security upgrade python from 3.7-slim to 3.8.18-slim
+              
+            
+            
+              
+                This contribution was made on Feb 21
+              
+              
+                Feb 21
+
+[Snyk] Security upgrade python from 3.7-slim to 3.8.18-slim
+              
+            
+            
+              
+                This contribution was made on Feb 21
+              
+              
+                Feb 21
+
+[Snyk] Security upgrade python from 3.7-slim to 3.8.18-slim
+              
+            
+            
+              
+                This contribution was made on Feb 21
+              
+              
+                Feb 21
+
+[Snyk] Security upgrade python from 3.7-slim to 3.8.18-slim
+              
+            
+            
+              
+                This contribution was made on Feb 21
+              
+              
+                Feb 21
+
+[Snyk] Security upgrade python from 3.7-slim to 3.13.0a3-slim
+              
+            
+            
+              
+                This contribution was made on Feb 1
+              
+              
+                Feb 1
+
+[Snyk] Security upgrade python from 3.7-slim to 3.13.0a3-slim
+              
+            
+            
+              
+                This contribution was made on Feb 1
+              
+              
+                Feb 1
+
+[Snyk] Security upgrade python from 3.7-slim to 3.13.0a3-slim
+              
+            
+            
+              
+                This contribution was made on Feb 1
+              
+              
+                Feb 1
+
+[Snyk] Security upgrade python from 3.7-slim to 3.13.0a3-slim
+              
+            
+            
+              
+                This contribution was made on Feb 1
+              
+              
+                Feb 1
+
+Cdaprod/SeleniumBase
+
+2
+            
+            open
+
+[Snyk] Security upgrade cryptography from 38.0.3 to 42.0.4
+              
+            
+            
+              
+                This contribution was made on Feb 23
+              
+              
+                Feb 23
+
+[Snyk] Security upgrade pillow from 9.5.0 to 10.2.0
+              
+            
+            
+              
+                This contribution was made on Feb 1
+              
+              
+                Feb 1
+
+Cdaprod/xsshunter
+
+2
+            
+            open
+
+[Snyk] Security upgrade dnspython from 1.14.0 to 2.6.0rc1
+              
+            
+            
+              
+                This contribution was made on Feb 12
+              
+              
+                Feb 12
+
+[Snyk] Security upgrade dnspython from 1.14.0 to 2.6.0rc1
+              
+            
+            
+              
+                This contribution was made on Feb 11
+              
+              
+                Feb 11
+
+Cdaprod/xsshunter-express
+
+2
+            
+            open
+
+[Snyk] Security upgrade npm from 7.15.0 to 7.21.0
+              
+            
+            
+              
+                This contribution was made on Feb 12
+              
+              
+                Feb 12
+
+[Snyk] Security upgrade nodemailer from 6.5.0 to 6.9.9
+              
+            
+            
+              
+                This contribution was made on Feb 1
+              
+              
+                Feb 1
+
+Cdaprod/React-Crm
+
+2
+            
+            open
+
+[Snyk] Security upgrade react-scripts from 4.0.3 to 5.0.0
+              
+            
+            
+              
+                This contribution was made on Feb 11
+              
+              
+                Feb 11
+
+[Snyk] Security upgrade react-scripts from 4.0.3 to 5.0.0
+              
+            
+            
+              
+                This contribution was made on Feb 2
+              
+              
+                Feb 2
+
+Cdaprod/bounty-targets-data
+
+1
+            
+            open
+
+[Snyk] Security upgrade ruby from 3.1.3 to 3
+              
+            
+            
+              
+                This contribution was made on Feb 20
+              
+              
+                Feb 20
+
+Cdaprod/dashy
+
+1
+            
+            open
+
+[Snyk] Security upgrade node from 16.13.2-alpine to 16.19.1-alpine
+              
+            
+            
+              
+                This contribution was made on Feb 18
+              
+              
+                Feb 18
+
+Cdaprod/xsshunter_client
+
+1
+            
+            open
+
+[Snyk] Security upgrade pillow from 3.0.0 to 10.2.0
+              
+            
+            
+              
+                This contribution was made on Feb 2
+              
+              
+                Feb 2
+
+Cdaprod/LIST.BugBounty
+
+1
+            
+            open
+
+[Snyk] Security upgrade cryptography from 2.1.4 to 42.0.2
+              
+            
+            
+              
+                This contribution was made on Feb 2
+              
+              
+                Feb 2
+
+Cdaprod/TOOL.Chimera
+
+1
+            
+            open
+
+[Snyk] Security upgrade pillow from 9.0.0 to 10.2.0
+              
+            
+            
+              
+                This contribution was made on Feb 1
+              
+              
+                Feb 1
+
+Cdaprod/Villain
+
+1
+            
+            open
+
+[Snyk] Security upgrade pycryptodome from 3.15.0 to 3.19.1
+              
+            
+            
+              
+                This contribution was made on Feb 1
+              
+              
+                Feb 1
+
+Cdaprod/bbp-SecLists
+
+1
+            
+            open
+
+[Snyk] Security upgrade pillow from 9.5.0 to 10.2.0
+              
+            
+            
+              
+                This contribution was made on Feb 1
+              
+              
+                Feb 1
+
+Cdaprod/Lychee-Docker
+
+1
+            
+            open
+
+[Snyk] Security upgrade debian from bookworm-slim to 12.4-slim
+              
+            
+            
+              
+                This contribution was made on Feb 1
+              
+              
+                Feb 1
+
+8
+            contributions
+            in private repositories
+
+Feb 4 – Feb 11
+
+Seeing something unexpected? Take a look at the
+    GitHub profile guide.
+
+2024
+
+2023
+
+2022
+
