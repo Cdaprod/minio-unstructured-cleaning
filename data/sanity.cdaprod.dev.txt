@@ -1,0 +1,140 @@
+Blog.
+
+Exploring the Digital Frontier: A Next.js and Sanity CMS. Tech Journey by David Cannan.
+
+Introduction to cda.data-lake and MinIO
+
+The cda.data-lake project embodies a transformative approach to managing and processing data at scale. At its core, it leverages the robust capabilities of MinIO, an object storage solution that excels in performance and scalability. This integration empowers the project to handle an expansive array of data types and operations, ranging from simple storage to complex analytical computations and machine learning tasks. The use of MinIO ensures that the cda.data-lake can operate within a secure and compliant framework, making it a reliable foundation for data-driven innovation.
+
+As the cda.data-lake project evolves, the MinIO event notification system plays a pivotal role by automating workflows in real-time, thereby optimizing data processing and reducing manual intervention. This not only increases efficiency but also enables the system to swiftly adapt to the increasing volume and complexity of data. With MinIO's flexible and resilient infrastructure, the cda.data-lake project is set to redefine the standards of data handling and accessibility for diverse applications.
+
+David Cannan
+
+More Stories
+
+My Gartner's Peer Insights Review of MinIO - A Game Changer in Object Storage
+
+My experience with MinIO has been nothing short of fantastic. It's a testament to what a well-thought-out platform, backed by a passionate team and community, can achieve.
+
+David Cannan
+
+Unlocking Coding Efficiency: My Deep Dive into Langchain's StructuredTool and Pydantic Schema
+
+Discover how Langchain's StructuredTool and Pydantic Schema are revolutionizing my approach to coding. If you value code quality, data integrity, and efficiency, you won't want to miss this!
+
+David Cannan
+
+Building Custom Query Engines: A Journey of Discovery and Innovation
+
+Building custom query engines for my unique data needs has been an exhilarating journey filled with challenges, learning, and growth. From connecting various data sources to crafting intelligent search capabilities, this project has been a testament to the power of innovation and determination.
+
+David Cannan
+
+Revolutionizing Video Management with Langchain: A Comprehensive Guide
+
+Unleashing Langchain – a new era in video management! 🚀 With the muscle of ResNet50, the intelligence of SerpAPITool, and the flair of StreamlitTool, Langchain is more than just software; it's a symphony of technology and innovation. From indexing videos to classifying frames and researching keywords, it's a one-stop solution that's poised to redefine how we interact with video content. Watch out, world; Langchain is here, and it's ready to dazzle! 🎥✨
+
+David Cannan
+
+Social Engineering in the Modern Age: Unveiling Hidden Threats & Harnessing Human Behavior
+
+The potency of social engineering lies in its ability to exploit human reactions and biases. Recognizing and manipulating these targeted reactions is a testament to the prowess of a skilled social engineer. While the techniques may vary, the underpinning principle remains constant: understanding human psychology to predict, influence, and achieve a desired outcome.
+
+David Cannan
+
+Unleashing the Power of Ansible and OpenAI in Infrastructure Automation
+
+In the thrilling intersection of automation, artificial intelligence, and infrastructure management, my application leverages the power of Ansible and OpenAI to innovate and automate like never before. With Ansible's robust automation capabilities, the application creates tailored roles and relevant files based on input from a CSV file. But the magic doesn't stop there - it then utilizes OpenAI's cutting-edge AI models to generate high-quality content for these files. The amalgamation of these powerful tools opens up a world of possibilities, redefining the way we perceive infrastructure automation.
+
+David Cannan
+
+Machine Learning Odyssey: Charting Unexplored Terrains in Bug Bounty Systems
+
+Embarking on a thrilling journey of machine learning integration with AWS SageMaker, this blog post explores the transformative potential of SageMaker for my bug bounty system project. Delve into my exploration of SageMaker's diverse features, my inspirations, and the anticipation of where this exciting new direction will lead. This is more than just a project update; it's a chronicle of my personal growth and the lessons learned on the path of technological exploration.
+
+David Cannan
+
+Building an AI-Driven Bug Bounty Hunting System
+
+In my latest endeavor to create an AI-driven bug bounty hunting system, I found myself navigating the rich world of automation and serverless architectures. Through the integration of private repositories, Docker containers, serverless functions via OpenFaaS, and a structured GraphQL approach using Apollo Server, I've managed to craft an increasingly robust backend for bug hunting. A key turning point was the introduction of OpenAI's functions feature, capable of outputting JSON, which perfectly integrated into my existing architecture using BaseTool and significantly boosted the system's capability. This venture is far from over, but the journey thus far has been nothing short of exhilarating. Join me as I continue to explore, learn, and build.
+
+David Cannan
+
+Pwnagotchi - My Journey into Network Exploration
+
+About a year ago, I ventured into creating a Pwnagotchi, an AI-powered device designed to capture crackable WPA key material from surrounding Wi-Fi environments. This project led me down an exciting path of Python programming, Wi-Fi and GPS technologies, and deep reinforcement learning. Today, the Pwnagotchi stands as a testament to my journey from woodworking and cabinet-making professional to an aspiring software engineer and open-source contributor
+
+David Cannan
+
+From Carpentry to Coding
+
+A year ago, I set out on what seemed to be a straightforward project - constructing a CNC machine to assist in my woodworking and cabinet-making profession. This simple beginning, however, marked the start of an extraordinary journey that would not only revolutionize my career but also reshape my perspective on life.
+
+David Cannan
+
+The Joy of Wrapping Your Code in a FaaS Container
+
+Wrapping your code in a container with OpenFaaS is a joyful experience that brings control, flexibility, and simplicity back to your workflows. Give it a try, and enjoy the new era of serverless computing!
+
+David Cannan
+
+Exploring AI with Ansible-RoleBuilder and GPT-Engineer
+
+Embarking on a journey of self-taught software development, I've explored the intersection of DevOps and AI, integrating the power of GPT-Engineer into my project, Ansible-RoleBuilder. This post chronicles my adventure, from the creation of Ansible-RoleBuilder to the lessons learned from an AI experiment, shedding light on the potential of AI in software development for novices and veterans alike.
+
+David Cannan
+
+Unleashing the Power of AI with Google Apps Script and OpenAI: A Detailed Guide
+
+Embark on a journey with us as we delve into the world of Google Apps Script and OpenAI. Discover how we transformed our workflow, starting from summarizing videos to creating custom functions. Learn about the ease of writing scripts, the potential use cases, and how you can start your own project today.
+
+David Cannan
+
+Balancing Hardware Design and Creativity for Bug Hunting Infrastructure as Code
+
+Exploring the exciting frontier of hardware design, Infrastructure as Code (IaC), and embedded software development, we find a unique blend of creativity and technical proficiency. These disciplines, when combined effectively, pave the way for intelligent, automated, and highly specialized systems. This blog post delves into the tangible world of hardware, the abstract realm of IaC and embedded software, and the intricate balance between creativity and technicality. The intersection of these fields holds enormous potential, making it a thrilling area for tech enthusiasts to navigate.
+
+David Cannan
+
+Bug Hunting Infrastructure: A Journey in Infrastructure as Code (IaC)
+
+Embracing Infrastructure as Code (IaC) has been a significant step in my journey as a bug bounty hunter.
+
+David Cannan
+
+Prompt Engineering: How to, and why?
+
+Unlock the power of AI with Prompt Engineering! Our latest blog post dives into the what, why, and how of Prompt Engineering, a key skill for leveraging large language models. Learn how to craft effective prompts and guide AI to generate useful and relevant outputs. Don't miss out on this comprehensive guide to one of the most exciting fields in AI!
+
+David Cannan
+
+Latest Trends and Developments in AI: May 2023
+
+In this blog post, we explore five cutting-edge AI trends, including time series analysis using sARIMA models and Dash, geospatial data analysis with GeoPandas, building simple ETL pipelines with GitHub Actions, utilizing GPT-4 for poker coaching, and machine learning methods for protein design. These trends showcase the versatility and innovative applications of AI across various domains, from data processing to gaming and even biotechnology. Stay informed and up-to-date with the latest advancements in the ever-evolving field of artificial intelligence.
+
+David Cannan
+
+Mastering Modern Web Development: My Journey with Vercel, Cloudflare, and Sanity
+
+Dive into the world of a web developer adept at creating seamless experiences with Vercel, Cloudflare, and Sanity. Learn about the challenges faced and the skills gained, showcasing a unique skill set in the ever-evolving world of web development.
+
+David Cannan
+
+Building a Monorepo with CI/CD
+
+In the ever-evolving landscape of software development, practices like Continuous Integration and Continuous Deployment (CI/CD) have become crucial for efficient collaboration and rapid delivery of new features. By implementing CI/CD in a monorepo, which serves as an "umbrella" repository for multiple frameworks, developers can maintain a consistent and high-quality codebase while simplifying dependency management and fostering teamwork. This modern approach to software development ensures a seamless experience as teams work together to build, test, and deploy their projects, ultimately accelerating the release of new features and improvements.
+
+David Cannan
+
+My CNC Journey: From Rebuilding to Debugging and Beyond
+
+Embarking on a CNC machine rebuild led me to an exciting journey of learning C++ programming, Arduino PLCs, and a newfound passion for debugging devices. Dive into my story of discovery, growth, and the love for upgrading my CNC machine.
+
+David Cannan
+
+Embracing the Future of Web Development with Headless CMS
+
+Discover the power of headless CMS and its impact on the future of web development. Learn about its benefits, including flexibility, scalability, and improved performance, and how this decoupled architecture is revolutionizing the way we manage and deliver content across multiple platforms and devices.
+
+David Cannan
+

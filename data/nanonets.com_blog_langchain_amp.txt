@@ -1,0 +1,1204 @@
+A Complete LangChain Guide
+
+At its core, LangChain is an innovative framework tailored for crafting applications that leverage the capabilities of language models. It's a toolkit designed for developers to create applications that are context-aware and capable of sophisticated reasoning.
+
+This means LangChain applications can understand the context, such as prompt instructions or content grounding responses and use language models for complex reasoning tasks, like deciding how to respond or what actions to take. LangChain represents a unified approach to developing intelligent applications, simplifying the journey from concept to execution with its diverse components.
+
+While discussing the utility of LangChain for handling document data, it's crucial to mention the power of workflow automation. Nanonets' Workflow Automation platform takes efficiency to the next level by allowing you to seamlessly integrate AI and human-in-loop systems. Imagine transforming those scanned documents into actionable data without manual effort. With our intuitive platform, you can connect LangChain to a vast array of apps and services, streamlining your processes and freeing up valuable time. Learn more about how you can build robust, AI-enhanced workflows within minutes.
+
+Learn More
+
+Understanding LangChain
+
+LangChain is much more than just a framework; it's a full-fledged ecosystem comprising several integral parts.
+
+Firstly, there are the LangChain Libraries, available in both Python and JavaScript. These libraries are the backbone of LangChain, offering interfaces and integrations for various components. They provide a basic runtime for combining these components into cohesive chains and agents, along with ready-made implementations for immediate use.
+
+Next, we have LangChain Templates. These are a collection of deployable reference architectures tailored for a wide array of tasks. Whether you're building a chatbot or a complex analytical tool, these templates offer a solid starting point.
+
+LangServe steps in as a versatile library for deploying LangChain chains as REST APIs. This tool is essential for turning your LangChain projects into accessible and scalable web services.
+
+Lastly, LangSmith serves as a developer platform. It's designed to debug, test, evaluate, and monitor chains built on any LLM framework. The seamless integration with LangChain makes it an indispensable tool for developers aiming to refine and perfect their applications.
+
+Together, these components empower you to develop, productionize, and deploy applications with ease. With LangChain, you start by writing your applications using the libraries, referencing templates for guidance. LangSmith then helps you in inspecting, testing, and monitoring your chains, ensuring that your applications are constantly improving and ready for deployment. Finally, with LangServe, you can easily transform any chain into an API, making deployment a breeze.
+
+In the next sections, we will delve deeper into how to set up LangChain and begin your journey in creating intelligent, language model-powered applications.
+
+Automate manual tasks and workflows with our AI-driven workflow builder, designed by Nanonets for you and your teams.
+
+Get Started
+
+Installation and Setup
+
+Are you ready to dive into the world of LangChain? Setting it up is straightforward, and this guide will walk you through the process step-by-step.
+
+The first step in your LangChain journey is to install it. You can do this easily using pip or conda. Run the following command in your terminal:
+
+For those who prefer the latest features and are comfortable with a bit more adventure, you can install LangChain directly from the source. Clone the repository and navigate to the langchain/libs/langchain directory. Then, run:
+
+For experimental features, consider installing langchain-experimental. It's a package that contains cutting-edge code and is intended for research and experimental purposes. Install it using:
+
+LangChain CLI is a handy tool for working with LangChain templates and LangServe projects. To install the LangChain CLI, use:
+
+LangServe is essential for deploying your LangChain chains as a REST API. It gets installed alongside the LangChain CLI.
+
+LangChain often requires integrations with model providers, data stores, APIs, etc. For this example, we'll use OpenAI's model APIs. Install the OpenAI Python package using:
+
+To access the API, set your OpenAI API key as an environment variable:
+
+Alternatively, pass the key directly in your python environment:
+
+LangChain allows for the creation of language model applications through modules. These modules can either stand alone or be composed for complex use cases. These modules are -
+
+Model I/O: Facilitates interaction with various language models, handling their inputs and outputs efficiently.
+
+Retrieval: Enables access to and interaction with application-specific data, crucial for dynamic data utilization.
+
+Agents: Empower applications to select appropriate tools based on high-level directives, enhancing decision-making capabilities.
+
+Chains: Offers pre-defined, reusable compositions that serve as building blocks for application development.
+
+Memory: Maintains application state across multiple chain executions, essential for context-aware interactions.
+
+Each module targets specific development needs, making LangChain a comprehensive toolkit for creating advanced language model applications.
+
+Along with the above components, we also have LangChain Expression Language (LCEL), which is a declarative way to easily compose modules together, and this enables the chaining of components using a universal Runnable interface.
+
+LCEL looks something like this -
+
+Now that we have covered the basics, we will continue on to:
+
+Dig deeper into each Langchain module in detail.
+
+Learn how to use LangChain Expression Language.
+
+Explore common use cases and implement them.
+
+Deploy an end-to-end application with LangServe.
+
+Check out LangSmith for debugging, testing, and monitoring.
+
+Let's get started!
+
+Module I : Model I/O
+
+In LangChain, the core element of any application revolves around the language model. This module provides the essential building blocks to interface effectively with any language model, ensuring seamless integration and communication.
+
+Key Components of Model I/O
+
+LLMs and Chat Models (used interchangeably):LLMs:Definition: Pure text completion models.Input/Output: Take a text string as input and return a text string as output.Chat Models
+
+Definition: Models that use a language model as a base but differ in input and output formats.
+
+Input/Output: Accept a list of chat messages as input and return a Chat Message.
+
+Prompts: Templatize, dynamically select, and manage model inputs. Allows for the creation of flexible and context-specific prompts that guide the language model's responses.
+
+Output Parsers: Extract and format information from model outputs. Useful for converting the raw output of language models into structured data or specific formats needed by the application.
+
+LLMs
+
+LangChain's integration with Large Language Models (LLMs) like OpenAI, Cohere, and Hugging Face is a fundamental aspect of its functionality. LangChain itself does not host LLMs but offers a uniform interface to interact with various LLMs.
+
+This section provides an overview of using the OpenAI LLM wrapper in LangChain, applicable to other LLM types as well. We have already installed this in the "Getting Started" section. Let us initialize the LLM.
+
+LLMs implement the Runnable interface, the basic building block of the LangChain Expression Language (LCEL). This means they support invoke, ainvoke, stream, astream, batch, abatch, astream_log calls.
+
+LLMs accept strings as inputs, or objects which can be coerced to string prompts, including List[BaseMessage] and PromptValue. (more on these later)
+
+Let us look at some examples.
+
+You can alternatively call the stream method to stream the text response.
+
+Chat Models
+
+LangChain's integration with chat models, a specialized variation of language models, is essential for creating interactive chat applications. While they utilize language models internally, chat models present a distinct interface centered around chat messages as inputs and outputs. This section provides a detailed overview of using OpenAI's chat model in LangChain.
+
+Chat models primarily accept List[BaseMessage] as inputs. Strings can be converted to HumanMessage, and PromptValue is also supported.
+
+Prompts
+
+Prompts are essential in guiding language models to generate relevant and coherent outputs. They can range from simple instructions to complex few-shot examples. In LangChain, handling prompts can be a very streamlined process, thanks to several dedicated classes and functions.
+
+LangChain's PromptTemplate class is a versatile tool for creating string prompts. It uses Python's str.format syntax, allowing for dynamic prompt generation. You can define a template with placeholders and fill them with specific values as needed.
+
+For chat models, prompts are more structured, involving messages with specific roles. LangChain offers ChatPromptTemplate for this purpose.
+
+This approach allows for the creation of interactive, engaging chatbots with dynamic responses.
+
+Both PromptTemplate and ChatPromptTemplate integrate seamlessly with the LangChain Expression Language (LCEL), enabling them to be part of larger, complex workflows. We will discuss more on this later.
+
+Custom prompt templates are sometimes essential for tasks requiring unique formatting or specific instructions. Creating a custom prompt template involves defining input variables and a custom formatting method. This flexibility allows LangChain to cater to a wide array of application-specific requirements. Read more here.
+
+LangChain also supports few-shot prompting, enabling the model to learn from examples. This feature is vital for tasks requiring contextual understanding or specific patterns. Few-shot prompt templates can be built from a set of examples or by utilizing an Example Selector object. Read more here.
+
+Output Parsers
+
+Output parsers play a crucial role in Langchain, enabling users to structure the responses generated by language models. In this section, we will explore the concept of output parsers and provide code examples using Langchain's PydanticOutputParser, SimpleJsonOutputParser, CommaSeparatedListOutputParser, DatetimeOutputParser, and XMLOutputParser.
+
+PydanticOutputParser
+
+Langchain provides the PydanticOutputParser for parsing responses into Pydantic data structures. Below is a step-by-step example of how to use it:
+
+The output will be:
+
+SimpleJsonOutputParser
+
+Langchain's SimpleJsonOutputParser is used when you want to parse JSON-like outputs. Here's an example:
+
+CommaSeparatedListOutputParser
+
+The CommaSeparatedListOutputParser is handy when you want to extract comma-separated lists from model responses. Here's an example:
+
+DatetimeOutputParser
+
+Langchain's DatetimeOutputParser is designed to parse datetime information. Here's how to use it:
+
+These examples showcase how Langchain's output parsers can be used to structure various types of model responses, making them suitable for different applications and formats. Output parsers are a valuable tool for enhancing the usability and interpretability of language model outputs in Langchain.
+
+Automate manual tasks and workflows with our AI-driven workflow builder, designed by Nanonets for you and your teams.
+
+Get Started
+
+Module II : Retrieval
+
+Retrieval in LangChain plays a crucial role in applications that require user-specific data, not included in the model's training set. This process, known as Retrieval Augmented Generation (RAG), involves fetching external data and integrating it into the language model's generation process. LangChain provides a comprehensive suite of tools and functionalities to facilitate this process, catering to both simple and complex applications.
+
+LangChain achieves retrieval through a series of components which we will discuss one by one.
+
+Document Loaders
+
+Document loaders in LangChain enable the extraction of data from various sources. With over 100 loaders available, they support a range of document types, apps and sources (private s3 buckets, public websites, databases).
+
+You can choose a document loader based on your requirements here.
+
+All these loaders ingest data into Document classes. We'll learn how to use data ingested into Document classes later.
+
+Text File Loader: Load a simple .txt file into a document.
+
+CSV Loader: Load a CSV file into a document.
+
+We can choose to customize the parsing by specifying field names -
+
+PDF Loaders: PDF Loaders in LangChain offer various methods for parsing and extracting content from PDF files. Each loader caters to different requirements and uses different underlying libraries. Below are detailed examples for each loader.
+
+PyPDFLoader is used for basic PDF parsing.
+
+MathPixLoader is ideal for extracting mathematical content and diagrams.
+
+PyMuPDFLoader is fast and includes detailed metadata extraction.
+
+PDFMiner Loader is used for more granular control over text extraction.
+
+AmazonTextractPDFParser utilizes AWS Textract for OCR and other advanced PDF parsing features.
+
+PDFMinerPDFasHTMLLoader generates HTML from PDF for semantic parsing.
+
+PDFPlumberLoader provides detailed metadata and supports one document per page.
+
+Integrated Loaders: LangChain offers a wide variety of custom loaders to directly load data from your apps (such as Slack, Sigma, Notion, Confluence, Google Drive and many more) and databases and use them in LLM applications.
+
+The complete list is here.
+
+Below are a couple of examples to illustrate this -
+
+Example I - Slack
+
+Slack, a widely-used instant messaging platform, can be integrated into LLM  workflows and applications.
+
+Go to your Slack Workspace Management page.
+
+Navigate to {your_slack_domain}.slack.com/services/export.
+
+Select the desired date range and initiate the export.
+
+Slack notifies via email and DM once the export is ready.
+
+The export results in a .zip file located in your Downloads folder or your designated download path.
+
+Assign the path of the downloaded .zip file to LOCAL_ZIPFILE.
+
+Use the SlackDirectoryLoader from the langchain.document_loaders package.
+
+Example II - Figma
+
+Figma, a popular tool for interface design, offers a REST API for data integration.
+
+Obtain the Figma file key from the URL format: https://www.figma.com/file/{filekey}/sampleFilename.
+
+Node IDs are found in the URL parameter ?node-id={node_id}.
+
+Generate an access token following instructions at the Figma Help Center.
+
+The FigmaFileLoader class from langchain.document_loaders.figma is used to load Figma data.
+
+Various LangChain modules like CharacterTextSplitter, ChatOpenAI, etc., are employed for processing.
+
+The generate_code function uses the Figma data to create HTML/CSS code.
+
+It employs a templated conversation with a GPT-based model.
+
+The generate_code function, when executed, returns HTML/CSS code based on the Figma design input.
+
+Let us now use our knowledge to create a few document sets.
+
+We first load a PDF, the BCG annual sustainability report.
+
+We use the PyPDFLoader for this.
+
+We will ingest data from Airtable now. We have an Airtable containing information about various OCR and data extraction models -
+
+Let us use the AirtableLoader for this, found in the list of integrated loaders.
+
+Let us now proceed and learn how to use these document classes.
+
+Document Transformers
+
+Document transformers in LangChain are essential tools designed to manipulate documents, which we created in our previous subsection.
+
+They are used for tasks such as splitting long documents into smaller chunks, combining, and filtering, which are crucial for adapting documents to a model's context window or meeting specific application needs.
+
+One such tool is the RecursiveCharacterTextSplitter, a versatile text splitter that uses a character list for splitting. It allows parameters like chunk size, overlap, and starting index. Here's an example of how it's used in Python:
+
+Another tool is the CharacterTextSplitter, which splits text based on a specified character and includes controls for chunk size and overlap:
+
+The HTMLHeaderTextSplitter is designed to split HTML content based on header tags, retaining the semantic structure:
+
+A more complex manipulation can be achieved by combining HTMLHeaderTextSplitter with another splitter, like the Pipelined Splitter:
+
+LangChain also offers specific splitters for different programming languages, like the Python Code Splitter and the JavaScript Code Splitter:
+
+For splitting text based on token count, which is useful for language models with token limits, the TokenTextSplitter is used:
+
+Finally, the LongContextReorder reorders documents to prevent performance degradation in models due to long contexts:
+
+These tools demonstrate various ways to transform documents in LangChain, from simple text splitting to complex reordering and language-specific splitting. For more in-depth and specific use cases, the LangChain documentation and Integrations section should be consulted.
+
+In our examples, the loaders have already created chunked documents for us, and this part is already handled.
+
+Text Embedding Models
+
+Text embedding models in LangChain provide a standardized interface for various embedding model providers like OpenAI, Cohere, and Hugging Face. These models transform text into vector representations, enabling operations like semantic search through text similarity in vector space.
+
+To get started with text embedding models, you typically need to install specific packages and set up API keys. We have already done this for OpenAI
+
+In LangChain, the embed_documents method is used to embed multiple texts, providing a list of vector representations. For instance:
+
+For embedding a single text, such as a search query, the embed_query method is used. This is useful for comparing a query to a set of document embeddings. For example:
+
+Understanding these embeddings is crucial. Each piece of text is converted into a vector, the dimension of which depends on the model used. For instance, OpenAI models typically produce 1536-dimensional vectors. These embeddings are then used for retrieving relevant information.
+
+LangChain's embedding functionality is not limited to OpenAI but is designed to work with various providers. The setup and usage might slightly differ depending on the provider, but the core concept of embedding texts into vector space remains the same. For detailed usage, including advanced configurations and integrations with different embedding model providers, the LangChain documentation in the Integrations section is a valuable resource.
+
+Vector Stores
+
+Vector stores in LangChain support the efficient storage and searching of text embeddings. LangChain integrates with over 50 vector stores, providing a standardized interface for ease of use.
+
+Example: Storing and Searching Embeddings
+
+After embedding texts, we can store them in a vector store like Chroma and perform similarity searches:
+
+Let us alternatively use the FAISS vector store to create indexes for our documents.
+
+Retrievers
+
+Retrievers in LangChain are interfaces that return documents in response to an unstructured query. They are more general than vector stores, focusing on retrieval rather than storage. Although vector stores can be used as a retriever's backbone, there are other types of retrievers as well.
+
+To set up a Chroma retriever, you first install it using pip install chromadb. Then, you load, split, embed, and retrieve documents using a series of Python commands. Here's a code example for setting up a Chroma retriever:
+
+The MultiQueryRetriever automates prompt tuning by generating multiple queries for a user input query and combines the results. Here's an example of its simple usage:
+
+Contextual Compression in LangChain compresses retrieved documents using the context of the query, ensuring only relevant information is returned. This involves content reduction and filtering out less relevant documents. The following code example shows how to use Contextual Compression Retriever:
+
+The EnsembleRetriever combines different retrieval algorithms to achieve better performance. An example of combining BM25 and FAISS Retrievers is shown in the following code:
+
+MultiVector Retriever in LangChain allows querying documents with multiple vectors per document, which is useful for capturing different semantic aspects within a document. Methods for creating multiple vectors include splitting into smaller chunks, summarizing, or generating hypothetical questions. For splitting documents into smaller chunks, the following Python code can be used:
+
+Generating summaries for better retrieval due to more focused content representation is another method. Here's an example of generating summaries:
+
+Generating hypothetical questions relevant to each document using LLM is another approach. This can be done with the following code:
+
+The Parent Document Retriever is another retriever that strikes a balance between embedding accuracy and context retention by storing small chunks and retrieving their larger parent documents. Its implementation is as follows:
+
+A self-querying retriever constructs structured queries from natural language inputs and applies them to its underlying VectorStore. Its implementation is shown in the following code:
+
+The WebResearchRetriever performs web research based on a given query -
+
+For our examples, we can also use the standard retriever already implemented as part of our vector store object as follows -
+
+We can now query the retrievers. The output of our query will be document objects relevant to the query. These will be ultimately utilized to create relevant responses in further sections.
+
+Automate manual tasks and workflows with our AI-driven workflow builder, designed by Nanonets for you and your teams.
+
+Get Started
+
+Module III : Agents
+
+LangChain introduces a powerful concept called "Agents" that takes the idea of chains to a whole new level. Agents leverage language models to dynamically determine sequences of actions to perform, making them incredibly versatile and adaptive. Unlike traditional chains, where actions are hardcoded in code, agents employ language models as reasoning engines to decide which actions to take and in what order.
+
+The Agent is the core component responsible for decision-making. It harnesses the power of a language model and a prompt to determine the next steps to achieve a specific objective. The inputs to an agent typically include:
+
+Tools: Descriptions of available tools (more on this later).
+
+User Input: The high-level objective or query from the user.
+
+Intermediate Steps: A history of (action, tool output) pairs executed to reach the current user input.
+
+Tools
+
+Tools are interfaces that an agent can use to interact with the world. They enable agents to perform various tasks, such as searching the web, running shell commands, or accessing external APIs. In LangChain, tools are essential for extending the capabilities of agents and enabling them to accomplish diverse tasks.
+
+To use tools in LangChain, you can load them using the following snippet:
+
+Some tools may require a base Language Model (LLM) to initialize. In such cases, you can pass an LLM as well:
+
+This setup allows you to access a variety of tools and integrate them into your agent's workflows. The complete list of tools with usage documentation is here.
+
+Let us look at some examples of Tools.
+
+DuckDuckGo
+
+The DuckDuckGo tool enables you to perform web searches using its search engine. Here's how to use it:
+
+DataForSeo
+
+The DataForSeo toolkit allows you to obtain search engine results using the DataForSeo API. To use this toolkit, you'll need to set up your API credentials. Here's how to configure the credentials:
+
+Once your credentials are set, you can create a DataForSeoAPIWrapper tool to access the API:
+
+The DataForSeoAPIWrapper tool retrieves search engine results from various sources.
+
+You can customize the type of results and fields returned in the JSON response. For example, you can specify the result types, fields, and set a maximum count for the number of top results to return:
+
+This example customizes the JSON response by specifying result types, fields, and limiting the number of results.
+
+You can also specify the location and language for your search results by passing additional parameters to the API wrapper:
+
+By providing location and language parameters, you can tailor your search results to specific regions and languages.
+
+You have the flexibility to choose the search engine you want to use. Simply specify the desired search engine:
+
+In this example, the search is customized to use Bing as the search engine.
+
+The API wrapper also allows you to specify the type of search you want to perform. For instance, you can perform a maps search:
+
+This customizes the search to retrieve maps-related information.
+
+Shell (bash)
+
+The Shell toolkit provides agents with access to the shell environment, allowing them to execute shell commands. This feature is powerful but should be used with caution, especially in sandboxed environments. Here's how you can use the Shell tool:
+
+In this example, the Shell tool runs two shell commands: echoing "Hello World!" and displaying the current time.
+
+You can provide the Shell tool to an agent to perform more complex tasks. Here's an example of an agent fetching links from a web page using the Shell tool:
+
+In this scenario, the agent uses the Shell tool to execute a sequence of commands to fetch, filter, and sort URLs from a web page.
+
+The examples provided demonstrate some of the tools available in LangChain. These tools ultimately extend the capabilities of agents (explored in next subsection) and empower them to perform various tasks efficiently. Depending on your requirements, you can choose the tools and toolkits that best suit your project's needs and integrate them into your agent's workflows.
+
+Back to Agents
+
+Let's move on to agents now.
+
+The AgentExecutor is the runtime environment for an agent. It is responsible for calling the agent, executing the actions it selects, passing the action outputs back to the agent, and repeating the process until the agent finishes. In pseudocode, the AgentExecutor might look something like this:
+
+The AgentExecutor handles various complexities, such as dealing with cases where the agent selects a non-existent tool, handling tool errors, managing agent-produced outputs, and providing logging and observability at all levels.
+
+While the AgentExecutor class is the primary agent runtime in LangChain, there are other, more experimental runtimes supported, including:
+
+Plan-and-execute Agent
+
+Baby AGI
+
+Auto GPT
+
+To gain a better understanding of the agent framework, let's build a basic agent from scratch, and then move on to explore pre-built agents.
+
+Before we dive into building the agent, it's essential to revisit some key terminology and schema:
+
+AgentAction: This is a data class representing the action an agent should take. It consists of a tool property (the name of the tool to invoke) and a tool_input property (the input for that tool).
+
+AgentFinish: This data class indicates that the agent has finished its task and should return a response to the user. It typically includes a dictionary of return values, often with a key "output" containing the response text.
+
+Intermediate Steps: These are the records of previous agent actions and corresponding outputs. They are crucial for passing context to future iterations of the agent.
+
+In our example, we will use OpenAI Function Calling to create our agent. This approach is reliable for agent creation. We'll start by creating a simple tool that calculates the length of a word. This tool is useful because language models can sometimes make mistakes due to tokenization when counting word lengths.
+
+First, let's load the language model we'll use to control the agent:
+
+Let's test the model with a word length calculation:
+
+The response should indicate the number of letters in the word "educa."
+
+Next, we'll define a simple Python function to calculate the length of a word:
+
+We've created a tool named get_word_length that takes a word as input and returns its length.
+
+Now, let's create the prompt for the agent. The prompt instructs the agent on how to reason and format the output. In our case, we're using OpenAI Function Calling, which requires minimal instructions. We'll define the prompt with placeholders for user input and agent scratchpad:
+
+Now, how does the agent know which tools it can use? We're relying on OpenAI function calling language models, which require functions to be passed separately. To provide our tools to the agent, we'll format them as OpenAI function calls:
+
+Now, we can create the agent by defining input mappings and connecting the components:
+
+This is LCEL language. We will discuss this later in detail.
+
+We've created our agent, which understands user input, uses available tools, and formats output. Now, let's interact with it:
+
+The agent should respond with an AgentAction, indicating the next action to take.
+
+We've created the agent, but now we need to write a runtime for it. The simplest runtime is one that continuously calls the agent, executes actions, and repeats until the agent finishes. Here's an example:
+
+In this loop, we repeatedly call the agent, execute actions, and update the intermediate steps until the agent finishes. We also handle tool interactions within the loop.
+
+To simplify this process, LangChain provides the AgentExecutor class, which encapsulates agent execution and offers error handling, early stopping, tracing, and other improvements. Let's use AgentExecutor to interact with the agent:
+
+AgentExecutor simplifies the execution process and provides a convenient way to interact with the agent.
+
+Memory is also discussed in detail later.
+
+The agent we've created so far is stateless, meaning it doesn't remember previous interactions. To enable follow-up questions and conversations, we need to add memory to the agent. This involves two steps:
+
+Add a memory variable in the prompt to store chat history.
+
+Keep track of the chat history during interactions.
+
+Let's start by adding a memory placeholder in the prompt:
+
+Now, create a list to track the chat history:
+
+In the agent creation step, we'll include the memory as well:
+
+Now, when running the agent, make sure to update the chat history:
+
+This enables the agent to maintain a conversation history and answer follow-up questions based on previous interactions.
+
+Congratulations! You've successfully created and executed your first end-to-end agent in LangChain. To delve deeper into LangChain's capabilities, you can explore:
+
+Different agent types supported.
+
+Pre-built Agents
+
+How to work with tools and tool integrations.
+
+Agent Types
+
+LangChain offers various agent types, each suited for specific use cases. Here are some of the available agents:
+
+Zero-shot ReAct: This agent uses the ReAct framework to choose tools based solely on their descriptions. It requires descriptions for each tool and is highly versatile.
+
+Structured input ReAct: This agent handles multi-input tools and is suitable for complex tasks like navigating a web browser. It uses a tools' argument schema for structured input.
+
+OpenAI Functions: Specifically designed for models fine-tuned for function calling, this agent is compatible with models like gpt-3.5-turbo-0613 and gpt-4-0613. We used this to create our first agent above.
+
+Conversational: Designed for conversational settings, this agent uses ReAct for tool selection and utilizes memory to remember previous interactions.
+
+Self-ask with search: This agent relies on a single tool, "Intermediate Answer," which looks up factual answers to questions. It's equivalent to the original self-ask with search paper.
+
+ReAct document store: This agent interacts with a document store using the ReAct framework. It requires "Search" and "Lookup" tools and is similar to the original ReAct paper's Wikipedia example.
+
+Explore these agent types to find the one that best suits your needs in LangChain. These agents allow you to bind set of tools within them to handle actions and generate responses. Learn more on how to build your own agent with tools here.
+
+Prebuilt Agents
+
+Let's continue our exploration of agents, focusing on prebuilt agents available in LangChain.
+
+Gmail
+
+LangChain offers a Gmail toolkit that allows you to connect your LangChain email to the Gmail API. To get started, you'll need to set up your credentials, which are explained in the Gmail API documentation. Once you have downloaded the credentials.json file, you can proceed with using the Gmail API. Additionally, you'll need to install some required libraries using the following commands:
+
+You can create the Gmail toolkit as follows:
+
+You can also customize authentication as per your needs. Behind the scenes, a googleapi resource is created using the following methods:
+
+The toolkit offers various tools that can be used within an agent, including:
+
+GmailCreateDraft: Create a draft email with specified message fields.
+
+GmailSendMessage: Send email messages.
+
+GmailSearch: Search for email messages or threads.
+
+GmailGetMessage: Fetch an email by message ID.
+
+GmailGetThread: Search for email messages.
+
+To use these tools within an agent, you can initialize the agent as follows:
+
+Here are a couple of examples of how these tools can be used:
+
+Create a Gmail draft for editing:
+
+Search for the latest email in your drafts:
+
+These examples demonstrate the capabilities of LangChain's Gmail toolkit within an agent, enabling you to interact with Gmail programmatically.
+
+SQL Database Agent
+
+This section provides an overview of an agent designed to interact with SQL databases, particularly the Chinook database. This agent can answer general questions about a database and recover from errors. Please note that it is still in active development, and not all answers may be correct. Be cautious when running it on sensitive data, as it may perform DML statements on your database.
+
+To use this agent, you can initialize it as follows:
+
+This agent can be initialized using the
+
+ZERO_SHOT_REACT_DESCRIPTION agent type. It is designed to answer questions and provide descriptions. Alternatively, you can initialize the agent using the
+
+OPENAI_FUNCTIONS agent type with OpenAI's GPT-3.5-turbo model, which we used in our earlier client.
+
+Disclaimer
+
+The query chain may generate insert/update/delete queries. Be cautious, and use a custom prompt or create a SQL user without write permissions if needed.
+
+Be aware that running certain queries, such as "run the biggest query possible," could overload your SQL database, especially if it contains millions of rows.
+
+Data warehouse-oriented databases often support user-level quotas to limit resource usage.
+
+You can ask the agent to describe a table, such as the "playlisttrack" table. Here's an example of how to do it:
+
+The agent will provide information about the table's schema and sample rows.
+
+If you mistakenly ask about a table that doesn't exist, the agent can recover and provide information about the closest matching table. For example:
+
+The agent will find the nearest matching table and provide information about it.
+
+You can also ask the agent to run queries on the database. For instance:
+
+The agent will execute the query and provide the result, such as the country with the highest total sales.
+
+To get the total number of tracks in each playlist, you can use the following query:
+
+The agent will return the playlist names along with the corresponding total track counts.
+
+In cases where the agent encounters errors, it can recover and provide accurate responses. For instance:
+
+Even after encountering an initial error, the agent will adjust and provide the correct answer, which, in this case, is the top 3 best-selling artists.
+
+Pandas DataFrame Agent
+
+This section introduces an agent designed to interact with Pandas DataFrames for question-answering purposes. Please note that this agent utilizes the Python agent under the hood to execute Python code generated by a language model (LLM). Exercise caution when using this agent to prevent potential harm from malicious Python code generated by the LLM.
+
+You can initialize the Pandas DataFrame agent as follows:
+
+You can ask the agent to count the number of rows in the DataFrame:
+
+The agent will execute the code df.shape[0] and provide the answer, such as "There are 891 rows in the dataframe."
+
+You can also ask the agent to filter rows based on specific criteria, such as finding the number of people with more than 3 siblings:
+
+The agent will execute the code df[df['SibSp'] > 3].shape[0] and provide the answer, such as "30 people have more than 3 siblings."
+
+If you want to calculate the square root of the average age, you can ask the agent:
+
+The agent will calculate the average age using df['Age'].mean() and then calculate the square root using math.sqrt(). It will provide the answer, such as "The square root of the average age is 5.449689683556195."
+
+Let's create a copy of the DataFrame, and missing age values are filled with the mean age:
+
+Then, you can initialize the agent with both DataFrames and ask it a question:
+
+The agent will compare the age columns in both DataFrames and provide the answer, such as "177 rows in the age column are different."
+
+Jira Toolkit
+
+This section explains how to use the Jira toolkit, which allows agents to interact with a Jira instance. You can perform various actions such as searching for issues and creating issues using this toolkit. It utilizes the atlassian-python-api library. To use this toolkit, you need to set environment variables for your Jira instance, including JIRA_API_TOKEN, JIRA_USERNAME, and JIRA_INSTANCE_URL. Additionally, you may need to set your OpenAI API key as an environment variable.
+
+To get started, install the atlassian-python-api library and set the required environment variables:
+
+You can instruct the agent to create a new issue in a specific project with a summary and description:
+
+The agent will execute the necessary actions to create the issue and provide a response, such as "A new issue has been created in project PW with the summary 'Make more fried rice' and description 'Reminder to make more fried rice'."
+
+This allows you to interact with your Jira instance using natural language instructions and the Jira toolkit.
+
+Automate manual tasks and workflows with our AI-driven workflow builder, designed by Nanonets for you and your teams.
+
+Get Started
+
+Module IV : Chains
+
+LangChain is a tool designed for utilizing Large Language Models (LLMs) in complex applications. It provides frameworks for creating chains of components, including LLMs and other types of components. Two primary frameworks
+
+The LangChain Expression Language (LCEL)
+
+Legacy Chain interface
+
+The LangChain Expression Language (LCEL) is a syntax that allows for intuitive composition of chains. It supports advanced features like streaming, asynchronous calls, batching, parallelization, retries, fallbacks, and tracing. For example, you can compose a prompt, model, and output parser in LCEL as shown in the following code:
+
+Alternatively, the LLMChain is an option similar to LCEL for composing components. The LLMChain example is as follows:
+
+Chains in LangChain can also be stateful by incorporating a Memory object. This allows for data persistence across calls, as shown in this example:
+
+LangChain also supports integration with OpenAI's function-calling APIs, which is useful for obtaining structured outputs and executing functions within a chain. For getting structured outputs, you can specify them using Pydantic classes or JsonSchema, as illustrated below:
+
+For structured outputs, a legacy approach using LLMChain is also available:
+
+LangChain leverages OpenAI functions to create various specific chains for different purposes. These include chains for extraction, tagging, OpenAPI, and QA with citations.
+
+In the context of extraction, the process is similar to the structured output chain but focuses on information or entity extraction. For tagging, the idea is to label a document with classes such as sentiment, language, style, covered topics, or political tendency.
+
+An example of how tagging works in LangChain can be demonstrated with a Python code. The process begins with installing the necessary packages and setting up the environment:
+
+The schema for tagging is defined, specifying the properties and their expected types:
+
+Examples of running the tagging chain with different inputs show the model's ability to interpret sentiments, languages, and aggressiveness:
+
+For finer control, the schema can be defined more specifically, including possible values, descriptions, and required properties. An example of this enhanced control is shown below:
+
+Pydantic schemas can also be used for defining tagging criteria, providing a Pythonic way to specify required properties and types:
+
+Additionally, LangChain's metadata tagger document transformer can be used to extract metadata from LangChain Documents, offering similar functionality to the tagging chain but applied to a LangChain Document.
+
+Citing retrieval sources is another feature of LangChain, using OpenAI functions to extract citations from text. This is demonstrated in the following code:
+
+In LangChain, chaining in Large Language Model (LLM) applications typically involves combining a prompt template with an LLM and optionally an output parser. The recommended way to do this is through the LangChain Expression Language (LCEL), although the legacy LLMChain approach is also supported.
+
+Using LCEL, the BasePromptTemplate, BaseLanguageModel, and BaseOutputParser all implement the Runnable interface and can be easily piped into one another. Here's an example demonstrating this:
+
+Routing in LangChain allows for creating non-deterministic chains where the output of a previous step determines the next step. This helps in structuring and maintaining consistency in interactions with LLMs. For instance, if you have two templates optimized for different types of questions, you can choose the template based on user input.
+
+Here's how you can achieve this using LCEL with a RunnableBranch, which is initialized with a list of (condition, runnable) pairs and a default runnable:
+
+The final chain is then constructed using various components, such as a topic classifier, prompt branch, and an output parser, to determine the flow based on the topic of the input:
+
+This approach exemplifies the flexibility and power of LangChain in handling complex queries and routing them appropriately based on the input.
+
+In the realm of language models, a common practice is to follow up an initial call with a series of subsequent calls, using the output of one call as input for the next. This sequential approach is especially beneficial when you want to build on the information generated in previous interactions. While the LangChain Expression Language (LCEL) is the recommended method for creating these sequences, the SequentialChain method is still documented for its backward compatibility.
+
+To illustrate this, let's consider a scenario where we first generate a play synopsis and then a review based on that synopsis. Using Python's langchain.prompts, we create two PromptTemplate instances: one for the synopsis and another for the review. Here's the code to set up these templates:
+
+In the LCEL approach, we chain these prompts with ChatOpenAI and StrOutputParser to create a sequence that first generates a synopsis and then a review. The code snippet is as follows:
+
+If we need both the synopsis and the review, we can use RunnablePassthrough to create a separate chain for each and then combine them:
+
+For scenarios involving more complex sequences, the SequentialChain method comes into play. This allows for multiple inputs and outputs. Consider a case where we need a synopsis based on a play's title and era. Here's how we might set it up:
+
+In scenarios where you want to maintain context throughout a chain or for a later part of the chain, SimpleMemory can be used. This is particularly useful for managing complex input/output relationships. For instance, in a scenario where we want to generate social media posts based on a play's title, era, synopsis, and review, SimpleMemory can help manage these variables:
+
+In addition to sequential chains, there are specialized chains for working with documents. Each of these chains serves a different purpose, from combining documents to refining answers based on iterative document analysis, to mapping and reducing document content for summarization or re-ranking based on scored responses. These chains can be recreated with LCEL for additional flexibility and customization.
+
+StuffDocumentsChain combines a list of documents into a single prompt passed to an LLM.
+
+RefineDocumentsChain updates its answer iteratively for each document, suitable for tasks where documents exceed the model's context capacity.
+
+MapReduceDocumentsChain applies a chain to each document individually and then combines the results.
+
+MapRerankDocumentsChain scores each document-based response and selects the highest-scoring one.
+
+Here's an example of how you might set up a MapReduceDocumentsChain using LCEL:
+
+This configuration allows for a detailed and comprehensive analysis of document content, leveraging the strengths of LCEL and the underlying language model.
+
+Automate manual tasks and workflows with our AI-driven workflow builder, designed by Nanonets for you and your teams.
+
+Get Started
+
+Module V : Memory
+
+In LangChain, memory is a fundamental aspect of conversational interfaces, allowing systems to reference past interactions. This is achieved through storing and querying information, with two primary actions: reading and writing. The memory system interacts with a chain twice during a run, augmenting user inputs and storing the inputs and outputs for future reference.
+
+Building Memory into a System
+
+Storing Chat Messages: The LangChain memory module integrates various methods to store chat messages, ranging from in-memory lists to databases. This ensures that all chat interactions are recorded for future reference.
+
+Querying Chat Messages: Beyond storing chat messages, LangChain employs data structures and algorithms to create a useful view of these messages. Simple memory systems might return recent messages, while more advanced systems could summarize past interactions or focus on entities mentioned in the current interaction.
+
+To demonstrate the use of memory in LangChain, consider the ConversationBufferMemory class, a simple memory form that stores chat messages in a buffer. Here's an example:
+
+When integrating memory into a chain, it's crucial to understand the variables returned from memory and how they're used in the chain. For instance, the load_memory_variables method helps align the variables read from memory with the chain's expectations.
+
+End-to-End Example with LangChain
+
+Consider using ConversationBufferMemory in an LLMChain. The chain, combined with an appropriate prompt template and the memory, provides a seamless conversational experience. Here's a simplified example:
+
+This example illustrates how LangChain's memory system integrates with its chains to provide a coherent and contextually aware conversational experience.
+
+Memory Types in Langchain
+
+Langchain offers various memory types that can be utilized to enhance interactions with the AI models. Each memory type has its own parameters and return types, making them suitable for different scenarios. Let's explore some of the memory types available in Langchain along with code examples.
+
+1. Conversation Buffer Memory
+
+This memory type allows you to store and extract messages from conversations. You can extract the history as a string or as a list of messages.
+
+You can also use Conversation Buffer Memory in a chain for chat-like interactions.
+
+2. Conversation Buffer Window Memory
+
+This memory type keeps a list of recent interactions and uses the last K interactions, preventing the buffer from getting too large.
+
+Like Conversation Buffer Memory, you can also use this memory type in a chain for chat-like interactions.
+
+3. Conversation Entity Memory
+
+This memory type remembers facts about specific entities in a conversation and extracts information using an LLM.
+
+4. Conversation Knowledge Graph Memory
+
+This memory type uses a knowledge graph to recreate memory. You can extract current entities and knowledge triplets from messages.
+
+You can also use this memory type in a chain for conversation-based knowledge retrieval.
+
+5. Conversation Summary Memory
+
+This memory type creates a summary of the conversation over time, useful for condensing information from longer conversations.
+
+6. Conversation Summary Buffer Memory
+
+This memory type combines the conversation summary and buffer, maintaining a balance between recent interactions and a summary. It uses token length to determine when to flush interactions.
+
+You can use these memory types to enhance your interactions with AI models in Langchain. Each memory type serves a specific purpose and can be selected based on your requirements.
+
+7. Conversation Token Buffer Memory
+
+ConversationTokenBufferMemory is another memory type that keeps a buffer of recent interactions in memory. Unlike the previous memory types that focus on the number of interactions, this one uses token length to determine when to flush interactions.
+
+Using memory with LLM:
+
+In this example, the memory is set to limit interactions based on token length rather than the number of interactions.
+
+You can also get the history as a list of messages when using this memory type.
+
+Using in a chain:
+
+You can use ConversationTokenBufferMemory in a chain to enhance interactions with the AI model.
+
+In this example, ConversationTokenBufferMemory is used in a ConversationChain to manage the conversation and limit interactions based on token length.
+
+8. VectorStoreRetrieverMemory
+
+VectorStoreRetrieverMemory stores memories in a vector store and queries the top-K most "salient" documents every time it is called. This memory type doesn't explicitly track the order of interactions but uses vector retrieval to fetch relevant memories.
+
+In this example, VectorStoreRetrieverMemory is used to store and retrieve relevant information from a conversation based on vector retrieval.
+
+You can also use VectorStoreRetrieverMemory in a chain for conversation-based knowledge retrieval, as shown in the previous examples.
+
+These different memory types in Langchain provide various ways to manage and retrieve information from conversations, enhancing the capabilities of AI models in understanding and responding to user queries and context. Each memory type can be selected based on the specific requirements of your application.
+
+Now we'll learn how to use memory with an LLMChain. Memory in an LLMChain allows the model to remember previous interactions and context to provide more coherent and context-aware responses.
+
+To set up memory in an LLMChain, you need to create a memory class, such as ConversationBufferMemory. Here's how you can set it up:
+
+In this example, the ConversationBufferMemory is used to store the conversation history. The memory_key parameter specifies the key used to store the conversation history.
+
+If you are using a chat model instead of a completion-style model, you can structure your prompts differently to better utilize the memory. Here's an example of how to set up a chat model-based LLMChain with memory:
+
+In this example, the ChatPromptTemplate is used to structure the prompt, and the ConversationBufferMemory is used to store and retrieve the conversation history. This approach is particularly useful for chat-style conversations where context and history play a crucial role.
+
+Memory can also be added to a chain with multiple inputs, such as a question/answering chain. Here's an example of how to set up memory in a question/answering chain:
+
+In this example, a question is answered using a document split into smaller chunks. The ConversationBufferMemory is used to store and retrieve the conversation history, allowing the model to provide context-aware answers.
+
+Adding memory to an agent allows it to remember and use previous interactions to answer questions and provide context-aware responses. Here's how you can set up memory in an agent:
+
+In this example, memory is added to an agent, allowing it to remember the previous conversation history and provide context-aware answers. This enables the agent to answer follow-up questions accurately based on the information stored in memory.
+
+LangChain Expression Language
+
+In the world of natural language processing and machine learning, composing complex chains of operations can be a daunting task. Fortunately, LangChain Expression Language (LCEL) comes to the rescue, providing a declarative and efficient way to build and deploy sophisticated language processing pipelines. LCEL is designed to simplify the process of composing chains, making it possible to go from prototyping to production with ease. In this blog, we'll explore what LCEL is and why you might want to use it, along with practical code examples to illustrate its capabilities.
+
+LCEL, or LangChain Expression Language, is a powerful tool for composing language processing chains. It was purpose-built to support the transition from prototyping to production seamlessly, without requiring extensive code changes. Whether you're building a simple "prompt + LLM" chain or a complex pipeline with hundreds of steps, LCEL has you covered.
+
+Here are some reasons to use LCEL in your language processing projects:
+
+Fast Token Streaming: LCEL delivers tokens from a Language Model to an output parser in real-time, improving responsiveness and efficiency.
+
+Versatile APIs: LCEL supports both synchronous and asynchronous APIs for prototyping and production use, handling multiple requests efficiently.
+
+Automatic Parallelization: LCEL optimizes parallel execution when possible, reducing latency in both sync and async interfaces.
+
+Reliable Configurations: Configure retries and fallbacks for enhanced chain reliability at scale, with streaming support in development.
+
+Stream Intermediate Results: Access intermediate results during processing for user updates or debugging purposes.
+
+Schema Generation: LCEL generates Pydantic and JSONSchema schemas for input and output validation.
+
+Comprehensive Tracing: LangSmith automatically traces all steps in complex chains for observability and debugging.
+
+Easy Deployment: Deploy LCEL-created chains effortlessly using LangServe.
+
+Now, let's dive into practical code examples that demonstrate the power of LCEL. We'll explore common tasks and scenarios where LCEL shines.
+
+Prompt + LLM
+
+The most fundamental composition involves combining a prompt and a language model to create a chain that takes user input, adds it to a prompt, passes it to a model, and returns the raw model output. Here's an example:
+
+In this example, the chain generates a joke about bears.
+
+You can attach stop sequences to your chain to control how it processes text. For example:
+
+This configuration stops text generation when a newline character is encountered.
+
+LCEL supports attaching function call information to your chain. Here's an example:
+
+This example attaches function call information to generate a joke.
+
+Prompt + LLM + OutputParser
+
+You can add an output parser to transform the raw model output into a more workable format. Here's how you can do it:
+
+The output is now in a string format, which is more convenient for downstream tasks.
+
+When specifying a function to return, you can parse it directly using LCEL. For example:
+
+This example parses the output of the "joke" function directly.
+
+These are just a few examples of how LCEL simplifies complex language processing tasks. Whether you're building chatbots, generating content, or performing complex text transformations, LCEL can streamline your workflow and make your code more maintainable.
+
+RAG (Retrieval-augmented Generation)
+
+LCEL can be used to create retrieval-augmented generation chains, which combine retrieval and language generation steps. Here's an example:
+
+In this example, the chain retrieves relevant information from the context and generates a response to the question.
+
+Conversational Retrieval Chain
+
+You can easily add conversation history to your chains. Here's an example of a conversational retrieval chain:
+
+In this example, the chain handles a follow-up question within a conversational context.
+
+With Memory and Returning Source Documents
+
+LCEL also supports memory and returning source documents. Here's how you can use memory in a chain:
+
+In this example, memory is used to store and retrieve conversation history and source documents.
+
+Multiple Chains
+
+You can string together multiple chains using Runnables. Here's an example:
+
+In this example, two chains are combined to generate information about a city and its country in a specified language.
+
+Branching and Merging
+
+LCEL allows you to split and merge chains using RunnableMaps. Here's an example of branching and merging:
+
+In this example, a branching and merging chain is used to generate an argument and evaluate its pros and cons before generating a final response.
+
+Writing Python Code with LCEL
+
+One of the powerful applications of LangChain Expression Language (LCEL) is writing Python code to solve user problems. Below is an example of how to use LCEL to write Python code:
+
+In this example, a user provides input, and LCEL generates Python code to solve the problem. The code is then executed using a Python REPL, and the resulting Python code is returned in Markdown format.
+
+Please note that using a Python REPL can execute arbitrary code, so use it with caution.
+
+Adding Memory to a Chain
+
+Memory is essential in many conversational AI applications. Here's how to add memory to an arbitrary chain:
+
+In this example, memory is used to store and retrieve conversation history, allowing the chatbot to maintain context and respond appropriately.
+
+Using External Tools with Runnables
+
+LCEL allows you to seamlessly integrate external tools with Runnables. Here's an example using the DuckDuckGo Search tool:
+
+In this example, LCEL integrates the DuckDuckGo Search tool into the chain, allowing it to generate a search query from user input and retrieve search results.
+
+LCEL's flexibility makes it easy to incorporate various external tools and services into your language processing pipelines, enhancing their capabilities and functionality.
+
+Adding Moderation to an LLM Application
+
+To ensure that your LLM application adheres to content policies and includes moderation safeguards, you can integrate moderation checks into your chain. Here's how to add moderation using LangChain:
+
+In this example, the OpenAIModerationChain is used to add moderation to the response generated by the LLM. The moderation chain checks the response for content that violates OpenAI's content policy. If any violations are found, it will flag the response accordingly.
+
+Routing by Semantic Similarity
+
+LCEL allows you to implement custom routing logic based on the semantic similarity of user input. Here's an example of how to dynamically determine the chain logic based on user input:
+
+In this example, the prompt_router function calculates the cosine similarity between user input and predefined prompt templates for physics and math questions. Based on the similarity score, the chain dynamically selects the most relevant prompt template, ensuring that the chatbot responds appropriately to the user's question.
+
+Using Agents and Runnables
+
+LangChain allows you to create agents by combining Runnables, prompts, models, and tools. Here's an example of building an agent and using it:
+
+In this example, an agent is created by combining a model, tools, a prompt, and a custom logic for intermediate steps and tool conversion. The agent is then executed, providing a response to the user's query.
+
+Querying a SQL Database
+
+You can use LangChain to query a SQL database and generate SQL queries based on user questions. Here's an example:
+
+In this example, LangChain is used to generate SQL queries based on user questions and retrieve responses from a SQL database. The prompts and responses are formatted to provide natural language interactions with the database.
+
+Automate manual tasks and workflows with our AI-driven workflow builder, designed by Nanonets for you and your teams.
+
+Get Started
+
+Deploy with LangServe
+
+LangServe helps developers deploy LangChain runnables and chains as a REST API. This library is integrated with FastAPI and uses pydantic for data validation. Additionally, it provides a client that can be used to call into runnables deployed on a server, and a JavaScript client is available in LangChainJS.
+
+Features
+
+Input and Output schemas are automatically inferred from your LangChain object and enforced on every API call, with rich error messages.
+
+An API docs page with JSONSchema and Swagger is available.
+
+Efficient /invoke, /batch, and /stream endpoints with support for many concurrent requests on a single server.
+
+/stream_log endpoint for streaming all (or some) intermediate steps from your chain/agent.
+
+Playground page at /playground with streaming output and intermediate steps.
+
+Built-in (optional) tracing to LangSmith; just add your API key (see Instructions).
+
+All built with battle-tested open-source Python libraries like FastAPI, Pydantic, uvloop, and asyncio.
+
+Limitations
+
+Client callbacks are not yet supported for events that originate on the server.
+
+OpenAPI docs will not be generated when using Pydantic V2. FastAPI does not support mixing pydantic v1 and v2 namespaces. See the section below for more details.
+
+Use the LangChain CLI to bootstrap a LangServe project quickly. To use the langchain CLI, make sure that you have a recent version of langchain-cli installed. You can install it with pip install -U langchain-cli.
+
+Get your LangServe instance started quickly with LangChain Templates. For more examples, see the templates index or the examples directory.
+
+Here's a server that deploys an OpenAI chat model, an Anthropic chat model, and a chain that uses the Anthropic model to tell a joke about a topic.
+
+Once you've deployed the server above, you can view the generated OpenAPI docs using:
+
+Make sure to add the /docs suffix.
+
+In TypeScript (requires LangChain.js version 0.0.166 or later):
+
+Python using requests:
+
+You can also use curl:
+
+The following code:
+
+adds of these endpoints to the server:
+
+POST /my_runnable/invoke - invoke the runnable on a single input
+
+POST /my_runnable/batch - invoke the runnable on a batch of inputs
+
+POST /my_runnable/stream - invoke on a single input and stream the output
+
+POST /my_runnable/stream_log - invoke on a single input and stream the output, including output of intermediate steps as it's generated
+
+GET /my_runnable/input_schema - json schema for input to the runnable
+
+GET /my_runnable/output_schema - json schema for output of the runnable
+
+GET /my_runnable/config_schema - json schema for config of the runnable
+
+You can find a playground page for your runnable at /my_runnable/playground. This exposes a simple UI to configure and invoke your runnable with streaming output and intermediate steps.
+
+For both client and server:
+
+or pip install "langserve[client]" for client code, and pip install "langserve[server]" for server code.
+
+If you need to add authentication to your server, please reference FastAPI's security documentation and middleware documentation.
+
+You can deploy to GCP Cloud Run using the following command:
+
+LangServe provides support for Pydantic 2 with some limitations. OpenAPI docs will not be generated for invoke/batch/stream/stream_log when using Pydantic V2. Fast API does not support mixing pydantic v1 and v2 namespaces. LangChain uses the v1 namespace in Pydantic v2. Please read the following guidelines to ensure compatibility with LangChain. Except for these limitations, we expect the API endpoints, the playground, and any other features to work as expected.
+
+LLM applications often deal with files. There are different architectures that can be made to implement file processing; at a high level:
+
+The file may be uploaded to the server via a dedicated endpoint and processed using a separate endpoint.
+
+The file may be uploaded by either value (bytes of file) or reference (e.g., s3 url to file content).
+
+The processing endpoint may be blocking or non-blocking.
+
+If significant processing is required, the processing may be offloaded to a dedicated process pool.
+
+You should determine what is the appropriate architecture for your application. Currently, to upload files by value to a runnable, use base64 encoding for the file (multipart/form-data is not supported yet).
+
+Here's an
+
+example that shows how to use base64 encoding to send a file to a remote runnable. Remember, you can always upload files by reference (e.g., s3 url) or upload them as multipart/form-data to a dedicated endpoint.
+
+Input and Output types are defined on all runnables. You can access them via the input_schema and output_schema properties. LangServe uses these types for validation and documentation. If you want to override the default inferred types, you can use the with_types method.
+
+Here's a toy example to illustrate the idea:
+
+Inherit from CustomUserType if you want the data to deserialize into a pydantic model rather than the equivalent dict representation. At the moment, this type only works server-side and is used to specify desired decoding behavior. If inheriting from this type, the server will keep the decoded type as a pydantic model instead of converting it into a dict.
+
+The playground allows you to define custom widgets for your runnable from the backend. A widget is specified at the field level and shipped as part of the JSON schema of the input type. A widget must contain a key called type with the value being one of a well-known list of widgets. Other widget keys will be associated with values that describe paths in a JSON object.
+
+General schema:
+
+Allows the creation of a file upload input in the UI playground for files that are uploaded as base64 encoded strings. Here's the full example.
+
+Automate manual tasks and workflows with our AI-driven workflow builder, designed by Nanonets for you and your teams.
+
+Get Started
+
+Introduction to LangSmith
+
+LangChain makes it easy to prototype LLM applications and Agents. However, delivering LLM applications to production can be deceptively difficult. You will likely have to heavily customize and iterate on your prompts, chains, and other components to create a high-quality product.
+
+To aid in this process, LangSmith was introduced, a unified platform for debugging, testing, and monitoring your LLM applications.
+
+When might this come in handy? You may find it useful when you want to quickly debug a new chain, agent, or set of tools, visualize how components (chains, llms, retrievers, etc.) relate and are used, evaluate different prompts and LLMs for a single component, run a given chain several times over a dataset to ensure it consistently meets a quality bar, or capture usage traces and use LLMs or analytics pipelines to generate insights.
+
+Prerequisites:
+
+Create a LangSmith account and create an API key (see bottom left corner).
+
+Familiarize yourself with the platform by looking through the docs.
+
+Now, let's get started!
+
+First, configure your environment variables to tell LangChain to log traces. This is done by setting the LANGCHAIN_TRACING_V2 environment variable to true. You can tell LangChain which project to log to by setting the LANGCHAIN_PROJECT environment variable (if this isn't set, runs will be logged to the default project). This will automatically create the project for you if it doesn't exist. You must also set the LANGCHAIN_ENDPOINT and LANGCHAIN_API_KEY environment variables.
+
+NOTE: You can also use a context manager in python to log traces using:
+
+However, in this example, we will use environment variables.
+
+Create the LangSmith client to interact with the API:
+
+Create a LangChain component and log runs to the platform. In this example, we will create a ReAct-style agent with access to a general search tool (DuckDuckGo). The agent's prompt can be viewed in the Hub here:
+
+We are running the agent concurrently on multiple inputs to reduce latency. Runs get logged to LangSmith in the background, so execution latency is unaffected:
+
+Assuming you've successfully set up your environment, your agent traces should show up in the Projects section in the app. Congrats!
+
+It looks like the agent isn't effectively using the tools though. Let's evaluate this so we have a baseline.
+
+In addition to logging runs, LangSmith also allows you to test and evaluate your LLM applications.
+
+In this section, you will leverage LangSmith to create a benchmark dataset and run AI-assisted evaluators on an agent. You will do so in a few steps:
+
+Create a LangSmith dataset:
+
+Below, we use the LangSmith client to create a dataset from the input questions from above and a list labels. You will use these later to measure performance for a new agent. A dataset is a collection of examples, which are nothing more than input-output pairs you can use as test cases to your application:
+
+Initialize a new agent to benchmark:
+
+LangSmith lets you evaluate any LLM, chain, agent, or even a custom function. Conversational agents are stateful (they have memory); to ensure that this state isn't shared between dataset runs, we will pass in a chain_factory (
+
+aka a constructor) function to initialize for each call:
+
+Configure evaluation:
+
+Manually comparing the results of chains in the UI is effective, but it can be time-consuming. It can be helpful to use automated metrics and AI-assisted feedback to evaluate your component's performance:
+
+Run the agent and evaluators:
+
+Use the run_on_dataset (or asynchronous arun_on_dataset) function to evaluate your model. This will:
+
+Fetch example rows from the specified dataset.
+
+Run your agent (or any custom function) on each example.
+
+Apply evaluators to the resulting run traces and corresponding reference examples to generate automated feedback.
+
+The results will be visible in the LangSmith app:
+
+Now that we have our test run results, we can make changes to our agent and benchmark them. Let's try this again with a different prompt and see the results:
+
+LangSmith lets you export data to common formats such as CSV or JSONL directly in the web app. You can also use the client to fetch runs for further analysis, to store in your own database, or to share with others. Let's fetch the run traces from the evaluation run:
+
+This was a quick guide to get started, but there are many more ways to use LangSmith to speed up your developer flow and produce better results.
+
+For more information on how you can get the most out of LangSmith, check out LangSmith documentation.
+
+Level up with Nanonets
+
+While LangChain is a valuable tool for integrating language models (LLMs) with your applications and workflows, it may face limitations when it comes to enterprise use cases.
+
+Data Connectivity: Limited support for various business applications and data formats.
+
+Task Automation: Challenges in automating tasks across different applications.
+
+Data Synchronization: Inadequate real-time data update capabilities.
+
+Complex Configuration: Difficult and time-consuming setup processes.
+
+Format Adherence: No assurance that the model will follow specified formats accurately.
+
+Invalid Outputs: Risks of generating incorrect tool names or inputs.
+
+Non-Termination Issues: Problems with processes not ending appropriately.
+
+Customization Difficulty: Challenges in modifying or creating custom agents.
+
+Performance Issues: Slowness, especially when reprocessing prompts.
+
+Security Vulnerabilities: Risks of data loss or sensitive information exposure due to prompt injection attacks.
+
+Enter Nanonets Workflows!
+
+Harnessing the Power of Workflow Automation: A Game-Changer for Modern Businesses
+
+In today's fast-paced business environment, workflow automation stands out as a crucial innovation, offering a competitive edge to companies of all sizes. The integration of automated workflows into daily business operations is not just a trend; it's a strategic necessity. In addition to this, the advent of LLMs has opened even more opportunities for automation of manual tasks and processes.
+
+Welcome to Nanonets Workflow Automation, where AI-driven technology empowers you and your team to automate manual tasks and construct efficient workflows in minutes. Utilize natural language to effortlessly create and manage workflows that seamlessly integrate with all your documents, apps, and databases.
+
+Our platform offers not only seamless app integrations for unified workflows but also the ability to build and utilize custom Large Language Models Apps for sophisticated text writing and response posting within your apps. All the while ensuring data security remains our top priority, with strict adherence to GDPR, SOC 2, and HIPAA compliance standards​.
+
+To better understand the practical applications of Nanonets workflow automation, let's delve into some real-world examples.
+
+Automated Customer Support and Engagement Process
+
+Ticket Creation – Zendesk: The workflow is triggered when a customer submits a new support ticket in Zendesk, indicating they need assistance with a product or service.
+
+Ticket Update – Zendesk: After the ticket is created, an automated update is immediately logged in Zendesk to indicate that the ticket has been received and is being processed, providing the customer with a ticket number for reference.
+
+Information Retrieval – Nanonets Browsing: Concurrently, the Nanonets Browsing feature searches through all the knowledge base pages to find relevant information and possible solutions related to the customer's issue.
+
+Customer History Access – HubSpot: Simultaneously, HubSpot is queried to retrieve the customer's previous interaction records, purchase history, and any past tickets to provide context to the support team.
+
+Ticket Processing – Nanonets AI: With the relevant information and customer history at hand, Nanonets AI processes the ticket, categorizing the issue and suggesting potential solutions based on similar past cases.
+
+Notification – Slack: Finally, the responsible support team or individual is notified through Slack with a message containing the ticket details, customer history, and suggested solutions, prompting a swift and informed response.
+
+Automated Issue Resolution Process
+
+Initial Trigger – Slack Message: The workflow begins when a customer service representative receives a new message in a dedicated channel on Slack, signaling a customer issue that needs to be addressed.
+
+Classification – Nanonets AI: Once the message is detected, Nanonets AI steps in to classify the message based on its content and past classification data (from Airtable records). Using LLMs, it classifies it as a bug along with determining urgency.
+
+Record Creation – Airtable: After classification, the workflow automatically creates a new record in Airtable, a cloud collaboration service. This record includes all relevant details from the customer's message, such as customer ID, issue category, and urgency level.
+
+Team Assignment – Airtable: With the record created, the Airtable system then assigns a team to handle the issue. Based on the classification done by Nanonets AI, the system selects the most appropriate team – tech support, billing, customer success, etc. – to take over the issue.
+
+Notification – Slack: Finally, the assigned team is notified through Slack. An automated message is sent to the team's channel, alerting them of the new issue, providing a direct link to the Airtable record, and prompting a timely response.
+
+Automated Meeting Scheduling Process
+
+Initial Contact – LinkedIn: The workflow is initiated when a professional connection sends a new message on LinkedIn expressing interest in scheduling a meeting. An LLM parses incoming messages and triggers the workflow if it deems the message as a request for a meeting from a potential job candidate.
+
+Document Retrieval – Google Drive: Following the initial contact, the workflow automation system retrieves a pre-prepared document from Google Drive that contains information about the meeting agenda, company overview, or any relevant briefing materials.
+
+Scheduling – Google Calendar: Next, the system interacts with Google Calendar to get available times for the meeting. It checks the calendar for open slots that align with business hours (based on the location parsed from LinkedIn profile) and previously set preferences for meetings.
+
+Confirmation Message as Reply – LinkedIn: Once a suitable time slot is found, the workflow automation system sends a message back through LinkedIn. This message includes the proposed time for the meeting, access to the document retrieved from Google Drive, and a request for confirmation or alternative suggestions.
+
+Invoice Processing in Accounts Payable
+
+Receipt of Invoice - Gmail: An invoice is received via email or uploaded to the system.
+
+Data Extraction - Nanonets OCR: The system automatically extracts relevant data (like vendor details, amounts, due dates).
+
+Data Verification - Quickbooks: The Nanonets workflow verifies the extracted data against purchase orders and receipts.
+
+Approval Routing - Slack: The invoice is routed to the appropriate manager for approval based on predefined thresholds and rules.
+
+Payment Processing  - Brex: Once approved, the system schedules the payment according to the vendor's terms and updates the finance records.
+
+Archiving - Quickbooks: The completed transaction is archived for future reference and audit trails.
+
+Internal Knowledge Base Assistance
+
+Initial Inquiry – Slack: A team member, Smith, inquires in the #chat-with-data Slack channel about customers experiencing issues with QuickBooks integration.
+
+Automated Data Aggregation - Nanonets Knowledge Base:Ticket Lookup - Zendesk: The Zendesk app in Slack automatically provides a summary of today's tickets, indicating that there are issues with exporting invoice data to QuickBooks for some customers.Slack Search - Slack: Simultaneously, the Slack app notifies the channel that team members Patrick and Rachel are actively discussing the resolution of the QuickBooks export bug in another channel, with a fix scheduled to go live at 4 PM.Ticket Tracking – JIRA: The JIRA app updates the channel about a ticket created by Emily titled "QuickBooks export failing for QB Desktop integrations," which helps track the status and resolution progress of the issue.Reference Documentation – Google Drive: The Drive app mentions the existence of a runbook for fixing bugs related to QuickBooks integrations, which can be referenced to understand the steps for troubleshooting and resolution.Ongoing Communication and Resolution Confirmation – Slack: As the conversation progresses, the Slack channel serves as a real-time forum for discussing updates, sharing findings from the runbook, and confirming the deployment of the bug fix. Team members use the channel to collaborate, share insights, and ask follow-up questions to ensure a comprehensive understanding of the issue and its resolution.Resolution Documentation and Knowledge Sharing: After the fix is implemented, team members update the internal documentation in Google Drive with new findings and any additional steps taken to resolve the issue. A summary of the incident, resolution, and any lessons learned are already shared in the Slack channel. Thus, the team’s internal knowledge base is automatically enhanced for future use.
+
+The Future of Business Efficiency
+
+Nanonets Workflows is a secure, multi-purpose workflow automation platform that automates your manual tasks and workflows. It offers an easy-to-use user interface, making it accessible for both individuals and organizations.
+
+To get started, you can schedule a call with one of our AI experts, who can provide a personalized demo and trial of Nanonets Workflows tailored to your specific use case.
+
+Once set up, you can use natural language to design and execute complex applications and workflows powered by LLMs, integrating seamlessly with your apps and data.
+
+Supercharge your teams with Nanonets Workflows allowing them to focus on what truly matters.
+
+Automate manual tasks and workflows with our AI-driven workflow builder, designed by Nanonets for you and your teams.
+
+Get Started
+

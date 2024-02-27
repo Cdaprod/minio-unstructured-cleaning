@@ -32,8 +32,19 @@ bucket_name = "cda-datasets"
 if not minio_client.bucket_exists(bucket_name):
     minio_client.make_bucket(bucket_name)
 
-# Example list of URLs
-urls = ["https://blog.min.io", "https://example.org"]
+# List of URLs
+urls = [
+    "https://nanonets.com/blog/langchain/amp/",
+    "https://www.sitepoint.com/langchain-python-complete-guide/",
+    "https://medium.com/@aisagescribe/langchain-101-a-comprehensive-introduction-guide-7a5db81afa49",
+    "https://blog.min.io/minio-langchain-tool",
+    "https://quickaitutorial.com/langgraph-create-your-hyper-ai-agent/",
+    "https://python.langchain.com/docs/langserve",
+    "https://python.langchain.com/docs/expression_language/interface",
+    "https://blog.min.io/minio-langchain-tool",
+    "https://python.langchain.com/docs/langgraph",
+    "https://www.33rdsquare.com/langchain/",
+    "https://medium.com/widle-studio/building-ai-solutions-with-langchain-and-node-js-a-comprehensive-guide-widle-studio-4812753aedff", "https://blog.min.io/", "https://sanity.cdaprod.dev/"]
 
 for url in urls:
     response = requests.get(url)
